@@ -1,0 +1,72 @@
+/*--------------------------------------------------//
+/$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$
+/$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$
+| $$  \ $$| $$  \__/| $$  \__/| $$  \__/
+| $$$$$$$$| $$ /$$$$| $$      |  $$$$$$
+| $$__  $$| $$|_  $$| $$       \____  $$
+| $$  | $$| $$  \ $$| $$    $$ /$$  \ $$
+| $$  | $$|  $$$$$$/|  $$$$$$/|  $$$$$$/
+|__/  |__/ \______/  \______/  \______/
+Developed with loving code by http://www.agcs.works
+For questions and support email info@agcs.works
+//--------------------------------------------------*/
+
+function initBanner() {
+
+    var inputText               = document.getElementById('text').innerHTML;
+    var inputTextLength         = inputText.length;
+    //console.log(inputTextLength);
+    
+    var inputTextFontSize       = window.getComputedStyle(document.getElementById('text')).fontSize.replace('px','');
+    var inputTextLineHeight     = window.getComputedStyle(document.getElementById('text')).lineHeight.replace('px','');
+    
+    if(inputTextLength > 40) {
+        document.getElementById('text').style.fontSize = (inputTextFontSize*0.9)+'px';
+        document.getElementById('text').style.lineHeight = (inputTextLineHeight*0.9)+'px';
+    }
+    if(inputTextLength > 60) {
+        document.getElementById('text').style.fontSize = (inputTextFontSize*0.8)+'px';
+        document.getElementById('text').style.lineHeight = (inputTextLineHeight*0.8)+'px';
+    }
+
+	
+
+	var agcsVideo = document.getElementById('video');
+	agcsVideo.play();
+
+    var tl = new TimelineMax({
+        delay:1,
+        onComplete:addCtaListeners
+    })
+
+    tl
+
+    	.set([panel1,object],{x:-300, autoAlpha:1})
+    	.set(panel2,{x:300, autoAlpha:1})
+    	.set(text, {x:165, autoAlpha:1})
+    	.set([text,ctaText],{autoAlpha:1})
+    	.set(cta,{x:200, autoAlpha:1})
+        .set(arrow,{scale:0.5, y:1})
+
+    	.to([panel1,panel2],2,{x:0, ease: Expo.easeOut},'fade+=2.8')
+    	.to(video, 1.5, {autoAlpha:0}, 'fade+=2.8')
+    	.to(object,2,{x:0, ease: Expo.easeOut}, 'fade+=3.1')
+
+    	.to(text,1.5,{x:0, ease: Expo.easeOut}, '-=1.5')
+    	.to(cta,1.5,{x:0, ease: Expo.easeOut}, '-=1.2')
+
+
+}
+function addCtaListeners() {
+    container.addEventListener('mouseover', on_cta_over);
+    container.addEventListener('mouseout', on_cta_out);
+}
+
+function on_cta_over() {
+    TweenMax.to(arrow, 0.25, {x:5,autoAlpha:0});
+    TweenMax.set(arrow, {x:-5,delay:0.25});
+    TweenMax.to(arrow, 0.25, {x:0,autoAlpha:1,delay:0.26});
+}
+function on_cta_out() {
+    //TweenMax.to(cta, 0.25, {scale:1, ease:Expo.easeIn});
+}
