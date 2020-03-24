@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://towardsdatascience.com/media/aca90c4e97cca73dc586e65924ddbd6d -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Medium</title><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="https://gist.github.com/karamanbk/860c78615d615ae790cc8164f698953c.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"><div id="gist96036865" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-g3_3m_rfm-py" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-python ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-g3_3m_rfm-py-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-g3_3m_rfm-py-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#import libraries</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-g3_3m_rfm-py-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> <span class="pl-s1">datetime</span> <span class="pl-k">import</span> <span class="pl-s1">datetime</span>, <span class="pl-s1">timedelta</span>,<span class="pl-s1">date</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-g3_3m_rfm-py-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">pandas</span> <span class="pl-k">as</span> <span class="pl-s1">pd</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-g3_3m_rfm-py-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c1">%</span><span class="pl-s1">matplotlib</span> <span class="pl-s1">inline</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-g3_3m_rfm-py-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> <span class="pl-s1">sklearn</span>.<span class="pl-s1">metrics</span> <span class="pl-k">import</span> <span class="pl-s1">classification_report</span>,<span class="pl-s1">confusion_matrix</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-g3_3m_rfm-py-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">matplotlib</span>.<span class="pl-s1">pyplot</span> <span class="pl-k">as</span> <span class="pl-s1">plt</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-g3_3m_rfm-py-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-g3_3m_rfm-py-LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">seaborn</span> <span class="pl-k">as</span> <span class="pl-s1">sns</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-g3_3m_rfm-py-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> __future__ <span class="pl-k">import</span> <span class="pl-s1">division</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-g3_3m_rfm-py-LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> <span class="pl-s1">sklearn</span>.<span class="pl-s1">cluster</span> <span class="pl-k">import</span> <span class="pl-v">KMeans</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-g3_3m_rfm-py-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-g3_3m_rfm-py-LC12" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-g3_3m_rfm-py-LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">plotly</span>.<span class="pl-s1">plotly</span> <span class="pl-k">as</span> <span class="pl-s1">py</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-g3_3m_rfm-py-LC14" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">plotly</span>.<span class="pl-s1">offline</span> <span class="pl-k">as</span> <span class="pl-s1">pyoff</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-g3_3m_rfm-py-LC15" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">plotly</span>.<span class="pl-s1">graph_objs</span> <span class="pl-k">as</span> <span class="pl-s1">go</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-g3_3m_rfm-py-LC16" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-g3_3m_rfm-py-LC17" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">xgboost</span> <span class="pl-k">as</span> <span class="pl-s1">xgb</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-g3_3m_rfm-py-LC18" class="blob-code blob-code-inner js-file-line"><span class="pl-k">from</span> <span class="pl-s1">sklearn</span>.<span class="pl-s1">model_selection</span> <span class="pl-k">import</span> <span class="pl-v">KFold</span>, <span class="pl-s1">cross_val_score</span>, <span class="pl-s1">train_test_split</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-g3_3m_rfm-py-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-g3_3m_rfm-py-LC20" class="blob-code blob-code-inner js-file-line"><span class="pl-k">import</span> <span class="pl-s1">xgboost</span> <span class="pl-k">as</span> <span class="pl-s1">xgb</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-g3_3m_rfm-py-LC21" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-g3_3m_rfm-py-LC22" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#initate plotly</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-g3_3m_rfm-py-LC23" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">pyoff</span>.<span class="pl-en">init_notebook_mode</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-g3_3m_rfm-py-LC24" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-g3_3m_rfm-py-LC25" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#read data from csv and redo the data work we done before</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-g3_3m_rfm-py-LC26" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_data</span> <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-en">read_csv</span>(<span class="pl-s">'data.csv'</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-g3_3m_rfm-py-LC27" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_data</span>[<span class="pl-s">'InvoiceDate'</span>] <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-en">to_datetime</span>(<span class="pl-s1">tx_data</span>[<span class="pl-s">'InvoiceDate'</span>])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-g3_3m_rfm-py-LC28" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_uk</span> <span class="pl-c1">=</span> <span class="pl-s1">tx_data</span>.<span class="pl-en">query</span>(<span class="pl-s">"Country=='United Kingdom'"</span>).<span class="pl-en">reset_index</span>(<span class="pl-s1">drop</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-g3_3m_rfm-py-LC29" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-g3_3m_rfm-py-LC30" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#create 3m and 6m dataframes</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-g3_3m_rfm-py-LC31" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_3m</span> <span class="pl-c1">=</span> <span class="pl-s1">tx_uk</span>[(<span class="pl-s1">tx_uk</span>.<span class="pl-v">InvoiceDate</span> <span class="pl-c1">&lt;</span> <span class="pl-en">date</span>(<span class="pl-c1">2011</span>,<span class="pl-c1">6</span>,<span class="pl-c1">1</span>)) <span class="pl-c1">&amp;</span> (<span class="pl-s1">tx_uk</span>.<span class="pl-v">InvoiceDate</span> <span class="pl-c1">&gt;=</span> <span class="pl-en">date</span>(<span class="pl-c1">2011</span>,<span class="pl-c1">3</span>,<span class="pl-c1">1</span>))].<span class="pl-en">reset_index</span>(<span class="pl-s1">drop</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-g3_3m_rfm-py-LC32" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_6m</span> <span class="pl-c1">=</span> <span class="pl-s1">tx_uk</span>[(<span class="pl-s1">tx_uk</span>.<span class="pl-v">InvoiceDate</span> <span class="pl-c1">&gt;=</span> <span class="pl-en">date</span>(<span class="pl-c1">2011</span>,<span class="pl-c1">6</span>,<span class="pl-c1">1</span>)) <span class="pl-c1">&amp;</span> (<span class="pl-s1">tx_uk</span>.<span class="pl-v">InvoiceDate</span> <span class="pl-c1">&lt;</span> <span class="pl-en">date</span>(<span class="pl-c1">2011</span>,<span class="pl-c1">12</span>,<span class="pl-c1">1</span>))].<span class="pl-en">reset_index</span>(<span class="pl-s1">drop</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-g3_3m_rfm-py-LC33" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="file-g3_3m_rfm-py-LC34" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#create tx_user for assigning clustering</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="file-g3_3m_rfm-py-LC35" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-v">DataFrame</span>(<span class="pl-s1">tx_3m</span>[<span class="pl-s">'CustomerID'</span>].<span class="pl-en">unique</span>())</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="file-g3_3m_rfm-py-LC36" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>.<span class="pl-s1">columns</span> <span class="pl-c1">=</span> [<span class="pl-s">'CustomerID'</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="file-g3_3m_rfm-py-LC37" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="file-g3_3m_rfm-py-LC38" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#order cluster method</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="file-g3_3m_rfm-py-LC39" class="blob-code blob-code-inner js-file-line"><span class="pl-k">def</span> <span class="pl-en">order_cluster</span>(<span class="pl-s1">cluster_field_name</span>, <span class="pl-s1">target_field_name</span>,<span class="pl-s1">df</span>,<span class="pl-s1">ascending</span>):</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L40" class="blob-num js-line-number" data-line-number="40"></td>
+        <td id="file-g3_3m_rfm-py-LC40" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">new_cluster_field_name</span> <span class="pl-c1">=</span> <span class="pl-s">'new_'</span> <span class="pl-c1">+</span> <span class="pl-s1">cluster_field_name</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L41" class="blob-num js-line-number" data-line-number="41"></td>
+        <td id="file-g3_3m_rfm-py-LC41" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">df_new</span> <span class="pl-c1">=</span> <span class="pl-s1">df</span>.<span class="pl-en">groupby</span>(<span class="pl-s1">cluster_field_name</span>)[<span class="pl-s1">target_field_name</span>].<span class="pl-en">mean</span>().<span class="pl-en">reset_index</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L42" class="blob-num js-line-number" data-line-number="42"></td>
+        <td id="file-g3_3m_rfm-py-LC42" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">df_new</span> <span class="pl-c1">=</span> <span class="pl-s1">df_new</span>.<span class="pl-en">sort_values</span>(<span class="pl-s1">by</span><span class="pl-c1">=</span><span class="pl-s1">target_field_name</span>,<span class="pl-s1">ascending</span><span class="pl-c1">=</span><span class="pl-s1">ascending</span>).<span class="pl-en">reset_index</span>(<span class="pl-s1">drop</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L43" class="blob-num js-line-number" data-line-number="43"></td>
+        <td id="file-g3_3m_rfm-py-LC43" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">df_new</span>[<span class="pl-s">'index'</span>] <span class="pl-c1">=</span> <span class="pl-s1">df_new</span>.<span class="pl-s1">index</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L44" class="blob-num js-line-number" data-line-number="44"></td>
+        <td id="file-g3_3m_rfm-py-LC44" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">df_final</span> <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-en">merge</span>(<span class="pl-s1">df</span>,<span class="pl-s1">df_new</span>[[<span class="pl-s1">cluster_field_name</span>,<span class="pl-s">'index'</span>]], <span class="pl-s1">on</span><span class="pl-c1">=</span><span class="pl-s1">cluster_field_name</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L45" class="blob-num js-line-number" data-line-number="45"></td>
+        <td id="file-g3_3m_rfm-py-LC45" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">df_final</span> <span class="pl-c1">=</span> <span class="pl-s1">df_final</span>.<span class="pl-en">drop</span>([<span class="pl-s1">cluster_field_name</span>],<span class="pl-s1">axis</span><span class="pl-c1">=</span><span class="pl-c1">1</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L46" class="blob-num js-line-number" data-line-number="46"></td>
+        <td id="file-g3_3m_rfm-py-LC46" class="blob-code blob-code-inner js-file-line">    <span class="pl-s1">df_final</span> <span class="pl-c1">=</span> <span class="pl-s1">df_final</span>.<span class="pl-en">rename</span>(<span class="pl-s1">columns</span><span class="pl-c1">=</span>{<span class="pl-s">"index"</span>:<span class="pl-s1">cluster_field_name</span>})</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L47" class="blob-num js-line-number" data-line-number="47"></td>
+        <td id="file-g3_3m_rfm-py-LC47" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-s1">df_final</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L48" class="blob-num js-line-number" data-line-number="48"></td>
+        <td id="file-g3_3m_rfm-py-LC48" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L49" class="blob-num js-line-number" data-line-number="49"></td>
+        <td id="file-g3_3m_rfm-py-LC49" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L50" class="blob-num js-line-number" data-line-number="50"></td>
+        <td id="file-g3_3m_rfm-py-LC50" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#calculate recency score</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L51" class="blob-num js-line-number" data-line-number="51"></td>
+        <td id="file-g3_3m_rfm-py-LC51" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_max_purchase</span> <span class="pl-c1">=</span> <span class="pl-s1">tx_3m</span>.<span class="pl-en">groupby</span>(<span class="pl-s">'CustomerID'</span>).<span class="pl-v">InvoiceDate</span>.<span class="pl-en">max</span>().<span class="pl-en">reset_index</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L52" class="blob-num js-line-number" data-line-number="52"></td>
+        <td id="file-g3_3m_rfm-py-LC52" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_max_purchase</span>.<span class="pl-s1">columns</span> <span class="pl-c1">=</span> [<span class="pl-s">'CustomerID'</span>,<span class="pl-s">'MaxPurchaseDate'</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L53" class="blob-num js-line-number" data-line-number="53"></td>
+        <td id="file-g3_3m_rfm-py-LC53" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_max_purchase</span>[<span class="pl-s">'Recency'</span>] <span class="pl-c1">=</span> (<span class="pl-s1">tx_max_purchase</span>[<span class="pl-s">'MaxPurchaseDate'</span>].<span class="pl-en">max</span>() <span class="pl-c1">-</span> <span class="pl-s1">tx_max_purchase</span>[<span class="pl-s">'MaxPurchaseDate'</span>]).<span class="pl-s1">dt</span>.<span class="pl-s1">days</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L54" class="blob-num js-line-number" data-line-number="54"></td>
+        <td id="file-g3_3m_rfm-py-LC54" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-en">merge</span>(<span class="pl-s1">tx_user</span>, <span class="pl-s1">tx_max_purchase</span>[[<span class="pl-s">'CustomerID'</span>,<span class="pl-s">'Recency'</span>]], <span class="pl-s1">on</span><span class="pl-c1">=</span><span class="pl-s">'CustomerID'</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L55" class="blob-num js-line-number" data-line-number="55"></td>
+        <td id="file-g3_3m_rfm-py-LC55" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L56" class="blob-num js-line-number" data-line-number="56"></td>
+        <td id="file-g3_3m_rfm-py-LC56" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">kmeans</span> <span class="pl-c1">=</span> <span class="pl-v">KMeans</span>(<span class="pl-s1">n_clusters</span><span class="pl-c1">=</span><span class="pl-c1">4</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L57" class="blob-num js-line-number" data-line-number="57"></td>
+        <td id="file-g3_3m_rfm-py-LC57" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">kmeans</span>.<span class="pl-en">fit</span>(<span class="pl-s1">tx_user</span>[[<span class="pl-s">'Recency'</span>]])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L58" class="blob-num js-line-number" data-line-number="58"></td>
+        <td id="file-g3_3m_rfm-py-LC58" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>[<span class="pl-s">'RecencyCluster'</span>] <span class="pl-c1">=</span> <span class="pl-s1">kmeans</span>.<span class="pl-en">predict</span>(<span class="pl-s1">tx_user</span>[[<span class="pl-s">'Recency'</span>]])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L59" class="blob-num js-line-number" data-line-number="59"></td>
+        <td id="file-g3_3m_rfm-py-LC59" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L60" class="blob-num js-line-number" data-line-number="60"></td>
+        <td id="file-g3_3m_rfm-py-LC60" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-en">order_cluster</span>(<span class="pl-s">'RecencyCluster'</span>, <span class="pl-s">'Recency'</span>,<span class="pl-s1">tx_user</span>,<span class="pl-c1">False</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L61" class="blob-num js-line-number" data-line-number="61"></td>
+        <td id="file-g3_3m_rfm-py-LC61" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L62" class="blob-num js-line-number" data-line-number="62"></td>
+        <td id="file-g3_3m_rfm-py-LC62" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#calcuate frequency score</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L63" class="blob-num js-line-number" data-line-number="63"></td>
+        <td id="file-g3_3m_rfm-py-LC63" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_frequency</span> <span class="pl-c1">=</span> <span class="pl-s1">tx_3m</span>.<span class="pl-en">groupby</span>(<span class="pl-s">'CustomerID'</span>).<span class="pl-v">InvoiceDate</span>.<span class="pl-en">count</span>().<span class="pl-en">reset_index</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L64" class="blob-num js-line-number" data-line-number="64"></td>
+        <td id="file-g3_3m_rfm-py-LC64" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_frequency</span>.<span class="pl-s1">columns</span> <span class="pl-c1">=</span> [<span class="pl-s">'CustomerID'</span>,<span class="pl-s">'Frequency'</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L65" class="blob-num js-line-number" data-line-number="65"></td>
+        <td id="file-g3_3m_rfm-py-LC65" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-en">merge</span>(<span class="pl-s1">tx_user</span>, <span class="pl-s1">tx_frequency</span>, <span class="pl-s1">on</span><span class="pl-c1">=</span><span class="pl-s">'CustomerID'</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L66" class="blob-num js-line-number" data-line-number="66"></td>
+        <td id="file-g3_3m_rfm-py-LC66" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L67" class="blob-num js-line-number" data-line-number="67"></td>
+        <td id="file-g3_3m_rfm-py-LC67" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">kmeans</span> <span class="pl-c1">=</span> <span class="pl-v">KMeans</span>(<span class="pl-s1">n_clusters</span><span class="pl-c1">=</span><span class="pl-c1">4</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L68" class="blob-num js-line-number" data-line-number="68"></td>
+        <td id="file-g3_3m_rfm-py-LC68" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">kmeans</span>.<span class="pl-en">fit</span>(<span class="pl-s1">tx_user</span>[[<span class="pl-s">'Frequency'</span>]])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L69" class="blob-num js-line-number" data-line-number="69"></td>
+        <td id="file-g3_3m_rfm-py-LC69" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>[<span class="pl-s">'FrequencyCluster'</span>] <span class="pl-c1">=</span> <span class="pl-s1">kmeans</span>.<span class="pl-en">predict</span>(<span class="pl-s1">tx_user</span>[[<span class="pl-s">'Frequency'</span>]])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L70" class="blob-num js-line-number" data-line-number="70"></td>
+        <td id="file-g3_3m_rfm-py-LC70" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L71" class="blob-num js-line-number" data-line-number="71"></td>
+        <td id="file-g3_3m_rfm-py-LC71" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-en">order_cluster</span>(<span class="pl-s">'FrequencyCluster'</span>, <span class="pl-s">'Frequency'</span>,<span class="pl-s1">tx_user</span>,<span class="pl-c1">True</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L72" class="blob-num js-line-number" data-line-number="72"></td>
+        <td id="file-g3_3m_rfm-py-LC72" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L73" class="blob-num js-line-number" data-line-number="73"></td>
+        <td id="file-g3_3m_rfm-py-LC73" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#calcuate revenue score</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L74" class="blob-num js-line-number" data-line-number="74"></td>
+        <td id="file-g3_3m_rfm-py-LC74" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_3m</span>[<span class="pl-s">'Revenue'</span>] <span class="pl-c1">=</span> <span class="pl-s1">tx_3m</span>[<span class="pl-s">'UnitPrice'</span>] <span class="pl-c1">*</span> <span class="pl-s1">tx_3m</span>[<span class="pl-s">'Quantity'</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L75" class="blob-num js-line-number" data-line-number="75"></td>
+        <td id="file-g3_3m_rfm-py-LC75" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_revenue</span> <span class="pl-c1">=</span> <span class="pl-s1">tx_3m</span>.<span class="pl-en">groupby</span>(<span class="pl-s">'CustomerID'</span>).<span class="pl-v">Revenue</span>.<span class="pl-en">sum</span>().<span class="pl-en">reset_index</span>()</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L76" class="blob-num js-line-number" data-line-number="76"></td>
+        <td id="file-g3_3m_rfm-py-LC76" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-s1">pd</span>.<span class="pl-en">merge</span>(<span class="pl-s1">tx_user</span>, <span class="pl-s1">tx_revenue</span>, <span class="pl-s1">on</span><span class="pl-c1">=</span><span class="pl-s">'CustomerID'</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L77" class="blob-num js-line-number" data-line-number="77"></td>
+        <td id="file-g3_3m_rfm-py-LC77" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L78" class="blob-num js-line-number" data-line-number="78"></td>
+        <td id="file-g3_3m_rfm-py-LC78" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">kmeans</span> <span class="pl-c1">=</span> <span class="pl-v">KMeans</span>(<span class="pl-s1">n_clusters</span><span class="pl-c1">=</span><span class="pl-c1">4</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L79" class="blob-num js-line-number" data-line-number="79"></td>
+        <td id="file-g3_3m_rfm-py-LC79" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">kmeans</span>.<span class="pl-en">fit</span>(<span class="pl-s1">tx_user</span>[[<span class="pl-s">'Revenue'</span>]])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L80" class="blob-num js-line-number" data-line-number="80"></td>
+        <td id="file-g3_3m_rfm-py-LC80" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>[<span class="pl-s">'RevenueCluster'</span>] <span class="pl-c1">=</span> <span class="pl-s1">kmeans</span>.<span class="pl-en">predict</span>(<span class="pl-s1">tx_user</span>[[<span class="pl-s">'Revenue'</span>]])</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L81" class="blob-num js-line-number" data-line-number="81"></td>
+        <td id="file-g3_3m_rfm-py-LC81" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span> <span class="pl-c1">=</span> <span class="pl-en">order_cluster</span>(<span class="pl-s">'RevenueCluster'</span>, <span class="pl-s">'Revenue'</span>,<span class="pl-s1">tx_user</span>,<span class="pl-c1">True</span>)</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L82" class="blob-num js-line-number" data-line-number="82"></td>
+        <td id="file-g3_3m_rfm-py-LC82" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L83" class="blob-num js-line-number" data-line-number="83"></td>
+        <td id="file-g3_3m_rfm-py-LC83" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L84" class="blob-num js-line-number" data-line-number="84"></td>
+        <td id="file-g3_3m_rfm-py-LC84" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#overall scoring</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L85" class="blob-num js-line-number" data-line-number="85"></td>
+        <td id="file-g3_3m_rfm-py-LC85" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>[<span class="pl-s">'OverallScore'</span>] <span class="pl-c1">=</span> <span class="pl-s1">tx_user</span>[<span class="pl-s">'RecencyCluster'</span>] <span class="pl-c1">+</span> <span class="pl-s1">tx_user</span>[<span class="pl-s">'FrequencyCluster'</span>] <span class="pl-c1">+</span> <span class="pl-s1">tx_user</span>[<span class="pl-s">'RevenueCluster'</span>]</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L86" class="blob-num js-line-number" data-line-number="86"></td>
+        <td id="file-g3_3m_rfm-py-LC86" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>[<span class="pl-s">'Segment'</span>] <span class="pl-c1">=</span> <span class="pl-s">'Low-Value'</span></td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L87" class="blob-num js-line-number" data-line-number="87"></td>
+        <td id="file-g3_3m_rfm-py-LC87" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>.<span class="pl-s1">loc</span>[<span class="pl-s1">tx_user</span>[<span class="pl-s">'OverallScore'</span>]<span class="pl-c1">&gt;</span><span class="pl-c1">2</span>,<span class="pl-s">'Segment'</span>] <span class="pl-c1">=</span> <span class="pl-s">'Mid-Value'</span> </td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L88" class="blob-num js-line-number" data-line-number="88"></td>
+        <td id="file-g3_3m_rfm-py-LC88" class="blob-code blob-code-inner js-file-line"><span class="pl-s1">tx_user</span>.<span class="pl-s1">loc</span>[<span class="pl-s1">tx_user</span>[<span class="pl-s">'OverallScore'</span>]<span class="pl-c1">&gt;</span><span class="pl-c1">4</span>,<span class="pl-s">'Segment'</span>] <span class="pl-c1">=</span> <span class="pl-s">'High-Value'</span> </td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L89" class="blob-num js-line-number" data-line-number="89"></td>
+        <td id="file-g3_3m_rfm-py-LC89" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L90" class="blob-num js-line-number" data-line-number="90"></td>
+        <td id="file-g3_3m_rfm-py-LC90" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L91" class="blob-num js-line-number" data-line-number="91"></td>
+        <td id="file-g3_3m_rfm-py-LC91" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-g3_3m_rfm-py-L92" class="blob-num js-line-number" data-line-number="92"></td>
+        <td id="file-g3_3m_rfm-py-LC92" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/karamanbk/860c78615d615ae790cc8164f698953c/raw/8fcb91fd4d50ee5cd068365e60b045fdb4bf1105/g3_3m_rfm.py" style="float:right">view raw</a>
+        <a href="https://gist.github.com/karamanbk/860c78615d615ae790cc8164f698953c#file-g3_3m_rfm-py">g3_3m_rfm.py</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>
